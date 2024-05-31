@@ -1,0 +1,29 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
+ @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* default css stylings */
+
+li{
+  opacity: .3;
+  cursor: pointer;
+}
+
+body{
+  background: #f2f2f2;
+}
+
+.singleRestaurant:hover img{
+  transform: scale(1.1);
+  transition: all 0.8s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
