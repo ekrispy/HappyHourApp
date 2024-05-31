@@ -8,6 +8,9 @@ require("dotenv").config();
 const restaurants = require("../backend/Routes/Restaurants.js");
 const reviews = require("../backend/Routes/Reviews.js");
 const HappyHour = require("../backend/Routes/HappHourMenu.js");
+const Users = require("../backend/Routes/Users.js");
+
+const cors = require('cors');
 
 //middleware
 app.use(express.json());
