@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 app.use("/api/restaurants", restaurants);
 app.use("/api/reviews", reviews);
 app.use("/api/happyhour", HappyHour);
+app.use("/api/users", Users);
 
 // Connect to DB with error handling
 mongoose.connect(process.env.Atlas_URI)

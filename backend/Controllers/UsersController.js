@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("../models/UserSchema");
+const User = require("../Models/Users.js");
 
 const bcrypt = require("bcryptjs");
 
