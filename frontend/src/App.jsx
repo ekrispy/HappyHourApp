@@ -5,7 +5,7 @@ function App() {
   
 
   return (
-  <div>
+  <div className="flex items-center justify-centert">
       <Container />
   </div>
   )

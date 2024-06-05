@@ -1,0 +1,5 @@
+<!--Flex -->
+<div className="flex items-center justify-center"></div>
+
+<!-- grid -->
+<div className="grid items-center justify-center"></div>
