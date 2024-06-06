@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const User = require("../Models/Users.js");
 
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -41,7 +42,10 @@ const createUser = async (req, res) => {
             passwordHash
         });
 
-        res.status(200).json(newUser);
+        // Generate a token
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({ newUser, token });
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
@@ -62,10 +66,12 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        res.status(200).json({ message: 'Login successful' });
+        // Generate a token
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
-
 module.exports = { getAllUsers, getSingleUser, createUser, loginUser };
