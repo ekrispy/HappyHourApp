@@ -1,5 +1,9 @@
 import React from "react";
 import { GiHamburger } from "react-icons/gi";
+import { AiFillHome } from "react-icons/ai";
+import { BiRestaurant } from "react-icons/bi";
+import {BsBookmarkCheckFill} from "react-icons/bs"
+import { AiFillHeart } from "react-icons/ai";
 
 const SideMenu = () => {
   return (
@@ -23,7 +27,30 @@ const SideMenu = () => {
 
       {/* menu div */}
       <div className="m-auto grid justify-center mt-4">
-        <li className="flex pt-3 pb-3 pl-3 gap-2 hover:opacity-100 items-center"></li>
+        <li className="flex pt-3 pb-3 pl-3 gap-2 hover:opacity-100 items-center">
+            <AiFillHome className= 'text-white'/>
+            <span className="text-white">Home</span>
+        </li>
+        <li className="flex pt-3 pb-3 pl-3 gap-2 hover:opacity-100 items-center">
+            <BiRestaurant className= 'text-white'/>
+            <span className="text-white">Categories</span>
+        </li>
+        <li className="flex pt-3 pb-3 pl-3 gap-2 hover:opacity-100 items-center">
+            <BsBookmarkCheckFill className= 'text-white'/>
+            <span className="text-white">Reservations</span>
+        </li>
+        <li className="flex pt-3 pb-3 pl-3 gap-2 hover:opacity-100 items-center">
+            <AiFillHeart className= 'text-white'/>
+            <span className="text-white">Favorites</span>
+        </li>
+      </div>
+      {/* side menu map div */}
+      <div className="mt-5 w-full rounded-xl overflow-hidden">
+        <img
+          src=""
+          alt="Map Image"     
+          className=" h-[100%] object-cover"
+        />
       </div>
     </div>
   );
