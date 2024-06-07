@@ -1,47 +1,47 @@
 const express = require("express");
 const app = express();
-
 const mongoose = require('mongoose');
-
-
 require("dotenv").config();
+const cors = require('cors');
+
+// Import routes
 const restaurants = require("../backend/Routes/Restaurants.js");
 const reviews = require("../backend/Routes/Reviews.js");
 const HappyHour = require("../backend/Routes/HappHourMenu.js");
 const Users = require("../backend/Routes/Users.js");
 
-const cors = require('cors');
-
-//middleware
+// Middleware
 app.use(express.json());
+app.use(cors());  // Ensure CORS is correctly configured
+
+// Logging middleware
 app.use((req, res, next) => {
-  console.log(req.path, req.method);
+  console.log(`${req.method} ${req.path}`);
   next();
 });
 
+// Base route
 app.get("/", (req, res) => {
   res.send(
     "Welcome! If you want to access any of the routes, please use the URL: /restaurants, /reviews, or /happyhour"
   );
 });
 
+// Use routes
 app.use("/api/restaurants", restaurants);
 app.use("/api/reviews", reviews);
 app.use("/api/happyhour", HappyHour);
 app.use("/api/users", Users);
 
-// Connect to DB with error handling
+// Connect to MongoDB with error handling
 mongoose.connect(process.env.Atlas_URI)
- .then(() => {
-    // Listen for requests
-    const port = process.env.PORT || 3000; // default port if PORT is not set
+  .then(() => {
+    const port = process.env.PORT || 3000; // Default port if PORT is not set
     app.listen(port, () => {
       console.log(`App listening at http://localhost:${port}`);
     });
   })
- .catch((error) => {
-    console.error(`Error connecting to DB: ${error.message}`); // log error with message
-    process.exit(1); // exit with error code if DB connection fails
+  .catch((error) => {
+    console.error(`Error connecting to DB: ${error.message}`); // Log error with message
+    process.exit(1); // Exit with error code if DB connection fails
   });
-
-

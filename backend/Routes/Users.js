@@ -8,8 +8,8 @@ router.get('/', getAllUsers);
 // Route to get a single user by ID
 router.get('/:id', getSingleUser);
 
-// Route to create a new user
-router.post('/register', createUser);
+// Route to create a new user (signup)
+router.post('/signup', createUser);
 
 // Route to login user
 router.post('/login', loginUser);
