@@ -1,6 +1,7 @@
 const express = require("express");
 const{createRestaurant, getAllRestaurants, getSingleRestaurant, deleteRestaurant, updateRestaurant, seedRestaurants} = require('../Controllers/RestaurantController.js')
 const router = express.Router();
+const auth = require('../Middleware/auth')
 // const restaurants = require('../Db/restaurants.js');
 
 
@@ -14,14 +15,14 @@ router.get("/seed", seedRestaurants);
 router.get("/:id", getSingleRestaurant);
 
 // Create a new restaurant
-router.post("/", createRestaurant);
+router.post("/", auth, createRestaurant);
 
 
 
 // Delete a restaurant
-router.delete("/:id", deleteRestaurant);
+router.delete("/:id", auth, deleteRestaurant);
 
 // Update a restaurant
-router.patch("/:id", updateRestaurant);
+router.patch("/:id", auth, updateRestaurant);
 
 module.exports = router;
