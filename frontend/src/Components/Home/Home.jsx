@@ -39,6 +39,28 @@ const Home = () => {
         <h1 className="text-3xl mb-4">Welcome to HappyHour!</h1>
         <p className="text-lg">Find your favorite happy hours here!</p>
         <Carousel images={happyHourImages} /> {/* Use the Carousel component */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          <Card 
+            title="Weekly Happy Hour Deals" 
+            description="Check out the best deals of the week!" 
+            link="/weekly-deals" 
+          />
+          <Card 
+            title="New Happy Hours" 
+            description="Discover the newest happy hours in town!" 
+            link="/new-happy-hours" 
+          />
+          <Card 
+            title="Late Night Happy Hours" 
+            description="Find late night happy hour specials!" 
+            link="/late-night-deals" 
+          />
+          <Card 
+            title="Weekly Specials" 
+            description="Explore this week's special offers!" 
+            link="/weekly-specials" 
+          />
+        </div>
       </div>
     </div>
   );
@@ -63,6 +85,16 @@ const NavBar = ({ searchTerm, handleSearchChange }) => {
         <Link to="/signup" className="hover:text-hoverColor">Sign Up</Link>
       </div>
     </nav>
+  );
+};
+
+const Card = ({ title, description, link }) => {
+  return (
+    <div className="border rounded shadow p-4 bg-white">
+      <h2 className="text-xl font-bold mb-2">{title}</h2>
+      <p className="mb-4">{description}</p>
+      <Link to={link} className="text-blue-500 hover:text-blue-700">Learn More</Link>
+    </div>
   );
 };
 
