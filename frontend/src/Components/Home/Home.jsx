@@ -37,7 +37,7 @@ const Home = () => {
       <NavBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
       <div className="p-4">
         <h1 className="text-3xl mb-4">Welcome to HappyHour!</h1>
-        <p className="text-lg">Find your favorite happy hours here!</p>
+        <p className="text-xl mb-10 mt-10 flex gap-2 items-center justify-center text-center">Featured Happy Hour Deals</p>
         <Carousel images={happyHourImages} /> {/* Use the Carousel component */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
           <Card 
