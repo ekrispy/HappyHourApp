@@ -1,18 +1,10 @@
 import React, { useContext } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../../Context/AuthContext';
+import { Navigate, Outlet } from 'react-router-dom';
+import { AuthContext } from '../../Context/Context';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = () => {
     const { auth } = useContext(AuthContext);
-
-    return (
-        <Route
-            {...rest}
-            render={(props) =>
-                auth ? <Component {...props} /> : <Redirect to="/login" />
-            }
-        />
-    );
+    return auth.token ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

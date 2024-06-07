@@ -11,13 +11,16 @@ function App() {
   return (
     <main className="flex items-center justify-center h-screen">
       <AuthProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/home" element={<Container />} />
-        <PrivateRoute path="/home" element={<Container />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          
+          {/* Wrap protected routes within PrivateRoute */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/home" element={<Container />} />
+          </Route>
+        </Routes>
       </AuthProvider>
     </main>
   );
