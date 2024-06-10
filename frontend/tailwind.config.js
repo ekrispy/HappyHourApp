@@ -1,5 +1,3 @@
-// const { default: SideMenu } = require('./src/Components/Sidemenu/SideMenu');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,jsx}"],
@@ -11,6 +9,7 @@ module.exports = {
       },
       height: {
         90: "90%",
+        96: "24rem", // 24rem equals 384px
       },
       colors: {
         sideMenuBg: "#181818",
@@ -25,6 +24,6 @@ module.exports = {
         gradient: "linear-gradient(rgb(56, 194, 166), rgb(124, 83, 151))",
       },
     },
-    plugins: [],
   },
+  plugins: [],
 };

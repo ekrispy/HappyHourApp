@@ -12,14 +12,14 @@ const Carousel = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full h-64 overflow-hidden">
+    <div className="relative w-full h-96 overflow-hidden"> {/* Adjust height as needed */}
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <div key={index} className="min-w-full flex-shrink-0 relative">
-            <img src={image.image} alt={image.title} className="w-full h-64 object-cover" />
+          <div key={index} className="min-w-full flex-shrink-0 relative h-96"> {/* Ensure the height is consistent */}
+            <img src={image.image} alt={image.title} className="w-full h-full object-cover" /> {/* Adjust height as needed */}
             <div className="absolute bottom-4 left-4 text-white bg-black bg-opacity-50 p-2 rounded">
               <h2 className="text-lg">{image.title}</h2>
               <p className="text-sm">{image.location}</p>

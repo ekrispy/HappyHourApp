@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import Carousel from '../Carousel/Carousel.jsx'; // Import the Carousel component
+import Cattivella from "../../assets/Catt2.jpg"
+import Ang from "../../assets/ang3.jpg"
+import Kona from "../../assets/kona.jpg"
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,21 +16,21 @@ const Home = () => {
   const happyHourImages = [
     {
       id: 1,
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Happy Hour 1',
-      location: '123 Main St, Anytown, USA',
+      image: Cattivella,
+      title: 'Cattivella',
+      location: '10195 E 29th Dr Suite 110, Denver, CO 80238',
     },
     {
       id: 2,
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Happy Hour 2',
-      location: '456 Elm St, Othertown, USA',
+      image: Ang,
+      title: "Angelo's Taverna ",
+      location: '620 E 6th Ave, Denver, CO 80203',
     },
     {
       id: 3,
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Happy Hour 3',
-      location: '789 Oak St, Thistown, USA',
+      image: Kona,
+      title: 'Kona Grill',
+      location: '3000 East 1st Ave, #184 Cherry Creek Mall, Denver, CO 80206',
     },
     // Add more images here
   ];
