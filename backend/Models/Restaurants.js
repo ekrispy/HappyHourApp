@@ -18,7 +18,10 @@ const newResturants = new Schema({
     },
     description: {
       type: String,
-      required: true,
+      
+    },
+    happyhour:{
+      type:String,
     },
   }, { timestamps: true });
   

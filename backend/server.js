@@ -7,7 +7,7 @@ const cors = require('cors');
 // Import routes
 const restaurants = require("../backend/Routes/Restaurants.js");
 const reviews = require("../backend/Routes/Reviews.js");
-const HappyHour = require("../backend/Routes/HappHourMenu.js");
+const AllDayHH = require("../backend/Routes/AllDayHH.js");
 const Users = require("../backend/Routes/Users.js");
 
 // Middleware
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 // Use routes
 app.use("/api/restaurants", restaurants);
 app.use("/api/reviews", reviews);
-app.use("/api/happyhour", HappyHour);
+app.use("/api/alldayhh", AllDayHH);
 app.use("/api/users", Users);
 
 // Connect to MongoDB with error handling

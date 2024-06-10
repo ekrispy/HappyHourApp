@@ -15,12 +15,12 @@ router.get("/seed", seedRestaurants);
 router.get("/:id", getSingleRestaurant);
 
 // Create a new restaurant
-router.post("/", auth, createRestaurant);
+router.post("/", createRestaurant);
 
 
 
 // Delete a restaurant
-router.delete("/:id", auth, deleteRestaurant);
+router.delete("/:id", deleteRestaurant);
 
 // Update a restaurant
 router.patch("/:id", auth, updateRestaurant);
