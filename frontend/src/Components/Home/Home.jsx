@@ -59,8 +59,8 @@ const Home = () => {
             link="/late-night-deals" 
           />
           <Card 
-            title="Weekly Specials" 
-            description="Explore this week's special offers!" 
+            title="All Day HappyHours" 
+            description="Explore All day HappyHours!" 
             link="/weekly-specials" 
           />
         </div>
