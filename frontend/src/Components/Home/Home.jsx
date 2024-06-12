@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AiOutlineSearch } from 'react-icons/ai';
+import React from 'react';
 import Carousel from '../Carousel/Carousel.jsx'; // Import the Carousel component
-import Cattivella from "../../assets/Catt2.jpg"
-import Ang from "../../assets/ang3.jpg"
-import Kona from "../../assets/kona.jpg"
+import Cattivella from "../../assets/Catt2.jpg";
+import Ang from "../../assets/ang3.jpg";
+import Kona from "../../assets/kona.jpg";
 
 const Home = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   const happyHourImages = [
     {
       id: 1,
@@ -36,58 +28,32 @@ const Home = () => {
   ];
 
   return (
-    <div className="h-screen">
-      <NavBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-      <div className="p-4">
-        <h1 className="text-3xl mb-4">Welcome to HappyHour!</h1>
-        <p className="text-xl mb-10 mt-10 flex gap-2 items-center justify-center text-center">Featured Happy Hour Deals</p>
-        <Carousel images={happyHourImages} /> {/* Use the Carousel component */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-          <Card 
-            title="Weekly Happy Hour Deals" 
-            description="Check out the best deals of the week!" 
-            link="/weekly-deals" 
-          />
-          <Card 
-            title="New Happy Hours" 
-            description="Discover the newest happy hours in town!" 
-            link="/new-happy-hours" 
-          />
-          <Card 
-            title="Late Night Happy Hours" 
-            description="Find late night happy hour specials!" 
-            link="/late-night-deals" 
-          />
-          <Card 
-            title="All Day HappyHours" 
-            description="Explore All day HappyHours!" 
-            link="/weekly-specials" 
-          />
-        </div>
+    <div className="h-screen p-4">
+            <p className="text-xl mb-10 mt-10 flex gap-2 items-center justify-center text-center">Featured Happy Hour Deals</p>
+      <Carousel images={happyHourImages} /> {/* Use the Carousel component */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        <Card 
+          title="Weekly Happy Hour Deals" 
+          description="Check out the best deals of the week!" 
+          link="/weekly-deals" 
+        />
+        <Card 
+          title="New Happy Hours" 
+          description="Discover the newest happy hours in town!" 
+          link="/new-happy-hours" 
+        />
+        <Card 
+          title="Late Night Happy Hours" 
+          description="Find late night happy hour specials!" 
+          link="/late-night-deals" 
+        />
+        <Card 
+          title="All Day HappyHours" 
+          description="Explore All day HappyHours!" 
+          link="/weekly-specials" 
+        />
       </div>
     </div>
-  );
-};
-
-const NavBar = ({ searchTerm, handleSearchChange }) => {
-  return (
-    <nav className="bg-sideMenuBg text-white p-4 flex justify-between items-center w-full fixed top-0 left-0">
-      <div className="text-2xl font-bold">
-        <Link to="/">HappyHour</Link>
-      </div>
-      <div className="flex items-center gap-4">
-        <input
-          type="text"
-          placeholder="Search for happy hours"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="p-2 border rounded"
-        />
-        <AiOutlineSearch className="text-[20px] cursor-pointer ml-2" />
-        <Link to="/login" className="hover:text-hoverColor">Login</Link>
-        <Link to="/signup" className="hover:text-hoverColor">Sign Up</Link>
-      </div>
-    </nav>
   );
 };
 
@@ -96,7 +62,7 @@ const Card = ({ title, description, link }) => {
     <div className="border rounded shadow p-4 bg-white">
       <h2 className="text-xl font-bold mb-2">{title}</h2>
       <p className="mb-4">{description}</p>
-      <Link to={link} className="text-blue-500 hover:text-blue-700">Learn More</Link>
+      <a href={link} className="text-blue-500 hover:text-blue-700">Learn More</a>
     </div>
   );
 };
