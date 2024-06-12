@@ -10,7 +10,7 @@ import NewHappyHours from './Components/Pages/NewHappyHours';
 import WeeklyDeals from './Components/Pages/WeeklyDeals';
 import WeeklySpecials from './Components/Pages/WeeklySpecials';
 import PrivateRoute from './Components/PrivateRoutes/PrivateRoutes';
-import Layout from './Components/Layout/Layout'; // Import the Layout component
+import Layout from './Components/Layout/Layout';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,7 +31,6 @@ function App() {
             <Route path="new-happy-hours" element={<NewHappyHours />} />
             <Route path="weekly-deals" element={<WeeklyDeals />} />
             <Route path="weekly-specials" element={<WeeklySpecials />} />
-            {/* Wrap protected routes within PrivateRoute */}
             <Route element={<PrivateRoute />}>
               <Route path="home" element={<Container />} />
             </Route>

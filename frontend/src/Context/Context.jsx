@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const { data } = await axios.post("/api/users/login", { email, password });
+        const { data } = await axios.post("http://localhost:4000/api/users/login", { email, password });
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         axios.defaults.headers.common['x-auth-token'] = data.token;
@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const register = async (username, email, password) => {
-        const { data } = await axios.post("/api/users/signup", { username, email, password });
+        const { data } = await axios.post("http://localhost:4000/api/users/signup", { username, email, password });
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         axios.defaults.headers.common['x-auth-token'] = data.token;
