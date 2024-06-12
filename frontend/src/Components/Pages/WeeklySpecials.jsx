@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const WeeklyDeals = () => {
+const WeeklySpecials = () => {
   const [groupedRestaurants, setGroupedRestaurants] = useState({});
   const [visibleDay, setVisibleDay] = useState(null);
 
@@ -68,4 +68,4 @@ const WeeklyDeals = () => {
   );
 };
 
-export default WeeklyDeals;
+export default WeeklySpecials;

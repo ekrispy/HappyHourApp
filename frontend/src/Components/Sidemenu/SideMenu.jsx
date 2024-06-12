@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburger } from "react-icons/gi";
 import { AiFillHome } from "react-icons/ai";
 import { BiRestaurant } from "react-icons/bi";
 import { BsBookmarkCheckFill } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
+import { AuthContext } from '../../Context/Context';
 
 const SideMenu = () => {
+  const { auth } = useContext(AuthContext);
+
   return (
     <div className="bg-sideMenuBg relative h-full basis-[20%] p-4">
       <div className="logo mt-4 gap-2 text-white flex items-center justify-center m-auto">
@@ -20,7 +23,7 @@ const SideMenu = () => {
           className="h-[80px] w-[80px] border-red-200 border-[4px] object-cover rounded-full"
         />
         <span className="opacity-70 mt-2 text-gray-400">Welcome</span>
-        <h3 className="font-bold text-textColor">Admin</h3>
+        <h3 className="font-bold text-textColor">{auth.user ? auth.user.username : 'Admin'}</h3>
       </div>
       <div className="m-auto grid justify-center mt-4">
         <Link to="/" className="flex pt-3 pb-3 pl-3 gap-2 hover:opacity-100 items-center">

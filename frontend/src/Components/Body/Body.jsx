@@ -33,7 +33,7 @@ const Body = () => {
           <h1 className='text-[35px] text-titleColor tracking-[1px font-black]'>
             Find the best place
           </h1>
-          <span className='text-[16px] opacity-70'><strong> 249 restaurants,</strong> choose yours</span>
+          
         </div>
         <div className='flex items-center justify-between gap-4'></div>
       </div>

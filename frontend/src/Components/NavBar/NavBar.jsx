@@ -1,10 +1,16 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { AuthContext } from '../../Context/Context';
 
 const NavBar = ({ searchTerm, handleSearchChange }) => {
   const { auth, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/', { replace: true });
+  };
 
   return (
     <nav className="bg-sideMenuBg text-white p-4 flex justify-between items-center w-full fixed top-0 left-0 z-10">
@@ -24,7 +30,7 @@ const NavBar = ({ searchTerm, handleSearchChange }) => {
           <>
             <span>Hi, {auth.user.username}</span>
             <Link to="/home" className="hover:text-hoverColor">User Page</Link>
-            <button onClick={logout} className="hover:text-hoverColor">Logout</button>
+            <button onClick={handleLogout} className="hover:text-hoverColor">Logout</button>
           </>
         ) : (
           <>
