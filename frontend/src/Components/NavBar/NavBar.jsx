@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { AuthContext } from '../../Context/Context';
 
 const NavBar = ({ searchTerm, handleSearchChange }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
-  };
+  const { auth, logout } = useContext(AuthContext);
 
   return (
     <nav className="bg-sideMenuBg text-white p-4 flex justify-between items-center w-full fixed top-0 left-0 z-10">
@@ -32,11 +20,11 @@ const NavBar = ({ searchTerm, handleSearchChange }) => {
           className="p-2 border rounded"
         />
         <AiOutlineSearch className="text-[20px] cursor-pointer ml-2" />
-        {user ? (
+        {auth.user ? (
           <>
-            <span>Hi, {user.username}</span>
+            <span>Hi, {auth.user.username}</span>
             <Link to="/home" className="hover:text-hoverColor">User Page</Link>
-            <button onClick={handleLogout} className="hover:text-hoverColor">Logout</button>
+            <button onClick={logout} className="hover:text-hoverColor">Logout</button>
           </>
         ) : (
           <>
