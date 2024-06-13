@@ -15,7 +15,7 @@ const NavBar = ({ searchTerm, handleSearchChange }) => {
   return (
     <nav className="bg-sideMenuBg text-white p-4 flex justify-between items-center w-full fixed top-0 left-0 z-10">
       <div className="text-2xl font-bold">
-        <Link to="/">HappyHour</Link>
+        <Link to="/">OHH Happy Hour!</Link>
       </div>
       <div className="flex items-center gap-4">
         <input

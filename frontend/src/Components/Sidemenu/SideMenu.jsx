@@ -14,7 +14,7 @@ const SideMenu = () => {
     <div className="bg-sideMenuBg relative h-full basis-[20%] p-4">
       <div className="logo mt-4 gap-2 text-white flex items-center justify-center m-auto">
         <GiHamburger className="text-[20px]" />
-        <h1 className="text-[20px] align-center font-black">HappyHour</h1>
+        <h1 className="text-[20px] align-center font-black">OHH Happy Hour!</h1>
       </div>
       <div className="flex items-center justify-center text-white flex-col mt-[3rem] ad">
         <img
