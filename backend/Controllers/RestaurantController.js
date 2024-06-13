@@ -1,4 +1,4 @@
-const Restaurants = require("../models/restaurants.js");
+const Restaurants = require("../Models/Restaurants.js");
 const mongoose = require("mongoose");
 
 

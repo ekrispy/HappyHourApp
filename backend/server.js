@@ -6,9 +6,10 @@ const cors = require('cors');
 
 // Import routes
 const restaurants = require("../backend/Routes/Restaurants.js");
-const reviews = require("../backend/Routes/Reviews.js");
+const reviews = require("./Routes/Favorites.js");
 const AllDayHH = require("../backend/Routes/AllDayHH.js");
 const Users = require("../backend/Routes/Users.js");
+const Favorites = require("../backend/Routes/Favorites.js");
 
 // Middleware
 app.use(express.json());
@@ -32,6 +33,7 @@ app.use("/api/restaurants", restaurants);
 app.use("/api/reviews", reviews);
 app.use("/api/alldayhh", AllDayHH);
 app.use("/api/users", Users);
+app.use("/api/favorites", Favorites);
 
 // Connect to MongoDB with error handling
 mongoose.connect(process.env.Atlas_URI)
