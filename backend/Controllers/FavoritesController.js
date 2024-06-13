@@ -42,4 +42,5 @@ const removeFavorite = async (req, res) => {
   }
 };
 
+
 module.exports = { getUserFavorites, addFavorite, removeFavorite };

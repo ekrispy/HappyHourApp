@@ -1,13 +1,30 @@
 import React, { useState, useContext } from 'react';
 import { AiOutlineSearch, AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { AuthContext } from '../../Context/Context';
+import axios from 'axios';
 
 const Body = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { auth, removeFromFavorites } = useContext(AuthContext);
+  const { auth, setFavorites } = useContext(AuthContext);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleRemoveFromFavorites = async (favoriteId) => {
+    try {
+      await axios.delete(`http://localhost:4000/api/favorites/${favoriteId}`, {
+        headers: { 'x-auth-token': auth.token }
+      });
+      // Update local state to remove the favorite
+      setFavorites(auth.favorites.filter(favorite => favorite._id !== favoriteId));
+    } catch (error) {
+      console.error('Error removing favorite:', error);
+      if (error.response && error.response.status === 401) {
+        alert('Session expired, please log in again.');
+        // Optionally log the user out here
+      }
+    }
   };
 
   return (
@@ -52,7 +69,7 @@ const Body = () => {
                   <p className="text-xs font-semibold text-green-600">{favorite.restaurantId.happyhour}</p>
                   <button
                     className="mt-2 p-2 bg-red-500 text-white rounded"
-                    onClick={() => removeFromFavorites(favorite._id)}
+                    onClick={() => handleRemoveFromFavorites(favorite._id)}
                   >
                     Remove from Favorites
                   </button>
