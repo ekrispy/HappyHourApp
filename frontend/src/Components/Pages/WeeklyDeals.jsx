@@ -24,7 +24,6 @@ const WeeklyDeals = () => {
     })
       .then(response => {
         alert('Added to favorites');
-        // Include full restaurant data in the favorites
         const restaurant = restaurants.find(r => r._id === restaurantId);
         setFavorites([...auth.favorites, { ...response.data, restaurantId: restaurant }]);
       })

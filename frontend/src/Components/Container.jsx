@@ -1,10 +1,11 @@
+
 import React from 'react'
 import Body from './Body/Body'
 import SideMenu from './Sidemenu/SideMenu'
 
 const Container = () => {
   return (
-    <div className='flex m-auto h-[90vh] items-center justify-center w-[85vw] my-10 rounded-xl overflow-hidden '>
+    <div className='flex m-auto h-[86vh] items-center justify-center  my-1 rounded-xl overflow-hidden '>
         <SideMenu/>
         <Body/>
     </div>

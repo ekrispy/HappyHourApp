@@ -43,13 +43,7 @@ const SideMenu = () => {
           <span className="text-white">Favorites</span>
         </Link>
       </div>
-      <div className="mt-5 w-full rounded-xl overflow-hidden">
-        <img
-          src=""
-          alt="Map Image"
-          className="h-full object-cover"
-        />
-      </div>
+      
     </div>
   );
 };

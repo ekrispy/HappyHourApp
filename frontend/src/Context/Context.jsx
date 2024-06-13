@@ -17,11 +17,14 @@ const AuthProvider = ({ children }) => {
           axios.defaults.headers.common['x-auth-token'] = token;
         }
 
-        setAuth({
+        const loadedAuth = {
           token: token || null,
           user: user ? JSON.parse(user) : null,
           favorites: favorites ? JSON.parse(favorites) : [],
-        });
+        };
+
+        setAuth(loadedAuth);
+        console.log('Auth data loaded:', loadedAuth);
       } catch (error) {
         console.error("Error loading auth data from localStorage", error);
         setAuth({ token: null, user: null, favorites: [] });
@@ -43,6 +46,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("favorites", JSON.stringify(favorites));
       axios.defaults.headers.common['x-auth-token'] = data.token;
       setAuth({ token: data.token, user: data.user, favorites: favorites });
+      console.log('Login successful:', { token: data.token, user: data.user, favorites });
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -57,6 +61,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("favorites", JSON.stringify([]));
       axios.defaults.headers.common['x-auth-token'] = data.token;
       setAuth({ token: data.token, user: data.user, favorites: [] });
+      console.log('Register successful:', { token: data.token, user: data.user });
     } catch (error) {
       console.error('Register error:', error);
       throw error;
@@ -69,9 +74,11 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("favorites");
     delete axios.defaults.headers.common['x-auth-token'];
     setAuth({ token: null, user: null, favorites: [] });
+    console.log('Logout successful');
   };
 
   const setFavorites = (favorites) => {
+    console.log('Setting favorites:', favorites);
     setAuth(prevAuth => ({ ...prevAuth, favorites }));
     localStorage.setItem("favorites", JSON.stringify(favorites));
   };

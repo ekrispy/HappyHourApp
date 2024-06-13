@@ -32,25 +32,26 @@ const WeeklySpecials = () => {
     setVisibleDay(visibleDay === day ? null : day);
   };
 
-  const handleAddToFavorites = (restaurantId) => {
+  const handleAddToFavorites = async (restaurantId) => {
     if (!auth.token) {
       alert('You need to be logged in to add favorites.');
       return;
     }
-    axios.post('http://localhost:4000/api/favorites', { restaurantId }, {
-      headers: { 'x-auth-token': auth.token }
-    })
-      .then(response => {
-        alert('Added to favorites');
-        const restaurant = Object.values(groupedRestaurants).flat().find(r => r._id === restaurantId);
-        setFavorites([...auth.favorites, { ...response.data, restaurantId: restaurant }]);
-      })
-      .catch(error => {
-        console.error('Error adding to favorites:', error);
-        if (error.response && error.response.status === 401) {
-          alert('Session expired, please log in again.');
-        }
+    try {
+      const response = await axios.post('http://localhost:4000/api/favorites', { restaurantId }, {
+        headers: { 'x-auth-token': auth.token }
       });
+      alert('Added to favorites');
+      const restaurant = Object.values(groupedRestaurants).flat().find(r => r._id === restaurantId);
+      const updatedFavorites = [...auth.favorites, { ...response.data, restaurantId: restaurant }];
+      console.log('Adding to favorites:', updatedFavorites);
+      setFavorites(updatedFavorites);
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+      if (error.response && error.response.status === 401) {
+        alert('Session expired, please log in again.');
+      }
+    }
   };
 
   const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
