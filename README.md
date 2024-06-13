@@ -17,3 +17,5 @@ Authentication JWT (JSON Web Tokens)
 
 Deploy link:
 https://happyhourapp-frontend.onrender.com/
+
+HAve fun!

@@ -12,10 +12,11 @@ const Body = () => {
     setSearchTerm(e.target.value);
   };
 
+  console.log(import.meta.env.VITE_BASEURL)
   // Handle removing a favorite restaurant
   const handleRemoveFromFavorites = async (favoriteId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/favorites/${favoriteId}`, {
+      await axios.delete( import.meta.env.VITE_BASEURL + '/api/favorites/' + favoriteId, {
         headers: { 'x-auth-token': auth.token } // Include token in request header
       });
       // Update the favorites list

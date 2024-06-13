@@ -36,10 +36,10 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const { data } = await axios.post("http://localhost:4000/api/users/login", { email, password });
+      const { data } = await axios.post(import.meta.env.VITE_BASEURL + "/api/users/login", { email, password });
       localStorage.setItem("token", data.token); // Store token in localStorage
       localStorage.setItem("user", JSON.stringify(data.user)); // Store user in localStorage
-      const favoritesResponse = await axios.get("http://localhost:4000/api/favorites", {
+      const favoritesResponse = await axios.get(import.meta.env.VITE_BASEURL + "/api/favorites", {
         headers: { 'x-auth-token': data.token }
       });
       const favorites = favoritesResponse.data.map(fav => ({ ...fav, restaurantId: fav.restaurantId }));
@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password) => {
     try {
-      const { data } = await axios.post("http://localhost:4000/api/users/signup", { username, email, password });
+      const { data } = await axios.post(import.meta.env.VITE_BASEURL + "/api/users/register", { username, email, password });
       localStorage.setItem("token", data.token); // Store token in localStorage
       localStorage.setItem("user", JSON.stringify(data.user)); // Store user in localStorage
       localStorage.setItem("favorites", JSON.stringify([])); // Initialize favorites in localStorage

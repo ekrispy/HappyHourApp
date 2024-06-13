@@ -7,7 +7,7 @@ const WeeklyDeals = () => {
   const { auth, setFavorites } = useContext(AuthContext); // Get auth and setFavorites from context
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/restaurants') // Fetch restaurants
+    axios.get(import.meta.env.VITE_BASEURL + '/api/alldayhh') // Fetch restaurants
       .then(response => {
         setRestaurants(response.data); // Set restaurants
       })
@@ -19,7 +19,7 @@ const WeeklyDeals = () => {
       alert('You need to be logged in to add favorites.');
       return;
     }
-    axios.post('http://localhost:4000/api/favorites', { restaurantId }, {
+    axios.post(import.meta.env.VITE_BASEURL + '/api/favorites', { restaurantId }, {
       headers: { 'x-auth-token': auth.token } // Send token in headers
     })
       .then(response => {

@@ -8,7 +8,7 @@ const WeeklySpecials = () => {
   const { auth, setFavorites } = useContext(AuthContext); // Get auth and setFavorites from context
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/alldayhh') // Fetch all day happy hours
+    axios.get(import.meta.env.VITE_BASEURL + '/api/alldayhh') // Fetch all day happy hours
       .then(response => {
         const grouped = groupByDay(response.data); // Group restaurants by day
         setGroupedRestaurants(grouped); // Set grouped restaurants
@@ -38,7 +38,7 @@ const WeeklySpecials = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:4000/api/favorites', { restaurantId }, {
+      const response = await axios.post(import.meta.env.VITE_BASEURL + '/api/favorites', { restaurantId }, {
         headers: { 'x-auth-token': auth.token } // Send token in headers
       });
       alert('Added to favorites');

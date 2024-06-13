@@ -18,7 +18,7 @@ function App() {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
-
+  console.log(import.meta.env)
   return (
     <main className="flex items-center justify-center h-screen">
       <AuthProvider>
