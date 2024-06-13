@@ -3,32 +3,32 @@ import axios from 'axios';
 import { AuthContext } from '../../Context/Context';
 
 const WeeklyDeals = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  const { auth, setFavorites } = useContext(AuthContext);
+  const [restaurants, setRestaurants] = useState([]); // State for restaurants
+  const { auth, setFavorites } = useContext(AuthContext); // Get auth and setFavorites from context
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/restaurants')
+    axios.get('http://localhost:4000/api/restaurants') // Fetch restaurants
       .then(response => {
-        setRestaurants(response.data);
+        setRestaurants(response.data); // Set restaurants
       })
-      .catch(error => console.error('Error fetching restaurants:', error));
+      .catch(error => console.error('Error fetching restaurants:', error)); // Log error
   }, []);
 
   const handleAddToFavorites = (restaurantId) => {
-    if (!auth.token) {
+    if (!auth.token) { // Check if user is logged in
       alert('You need to be logged in to add favorites.');
       return;
     }
     axios.post('http://localhost:4000/api/favorites', { restaurantId }, {
-      headers: { 'x-auth-token': auth.token }
+      headers: { 'x-auth-token': auth.token } // Send token in headers
     })
       .then(response => {
         alert('Added to favorites');
-        const restaurant = restaurants.find(r => r._id === restaurantId);
-        setFavorites([...auth.favorites, { ...response.data, restaurantId: restaurant }]);
+        const restaurant = restaurants.find(r => r._id === restaurantId); // Find restaurant
+        setFavorites([...auth.favorites, { ...response.data, restaurantId: restaurant }]); // Update favorites
       })
       .catch(error => {
-        console.error('Error adding to favorites:', error);
+        console.error('Error adding to favorites:', error); // Log error
         if (error.response && error.response.status === 401) {
           alert('Session expired, please log in again.');
         }
@@ -47,7 +47,7 @@ const WeeklyDeals = () => {
             <p className="text-sm">{restaurant.description}</p>
             <p className="text-xs font-semibold text-green-600">{restaurant.happyhour}</p>
             <button
-              onClick={() => handleAddToFavorites(restaurant._id)}
+              onClick={() => handleAddToFavorites(restaurant._id)} // Call to add to favorites
               className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
             >
               Add to Favorites

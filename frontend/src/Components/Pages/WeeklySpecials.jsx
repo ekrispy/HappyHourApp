@@ -3,58 +3,58 @@ import axios from 'axios';
 import { AuthContext } from '../../Context/Context';
 
 const WeeklySpecials = () => {
-  const [groupedRestaurants, setGroupedRestaurants] = useState({});
-  const [visibleDay, setVisibleDay] = useState(null);
-  const { auth, setFavorites } = useContext(AuthContext);
+  const [groupedRestaurants, setGroupedRestaurants] = useState({}); // State for grouped restaurants
+  const [visibleDay, setVisibleDay] = useState(null); // State for visible day
+  const { auth, setFavorites } = useContext(AuthContext); // Get auth and setFavorites from context
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/alldayhh')
+    axios.get('http://localhost:4000/api/alldayhh') // Fetch all day happy hours
       .then(response => {
-        const grouped = groupByDay(response.data);
-        setGroupedRestaurants(grouped);
+        const grouped = groupByDay(response.data); // Group restaurants by day
+        setGroupedRestaurants(grouped); // Set grouped restaurants
       })
-      .catch(error => console.error('Error fetching restaurants:', error));
+      .catch(error => console.error('Error fetching restaurants:', error)); // Log error
   }, []);
 
   const groupByDay = (restaurants) => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return restaurants.reduce((acc, restaurant) => {
-      const day = days.find(d => restaurant.happyhour.includes(d));
+      const day = days.find(d => restaurant.happyhour.includes(d)); // Find day in happy hour
       if (day) {
         if (!acc[day]) acc[day] = [];
-        acc[day].push(restaurant);
+        acc[day].push(restaurant); // Add restaurant to the day
       }
       return acc;
     }, {});
   };
 
   const toggleDay = (day) => {
-    setVisibleDay(visibleDay === day ? null : day);
+    setVisibleDay(visibleDay === day ? null : day); // Toggle visibility of day
   };
 
   const handleAddToFavorites = async (restaurantId) => {
-    if (!auth.token) {
+    if (!auth.token) { // Check if user is logged in
       alert('You need to be logged in to add favorites.');
       return;
     }
     try {
       const response = await axios.post('http://localhost:4000/api/favorites', { restaurantId }, {
-        headers: { 'x-auth-token': auth.token }
+        headers: { 'x-auth-token': auth.token } // Send token in headers
       });
       alert('Added to favorites');
-      const restaurant = Object.values(groupedRestaurants).flat().find(r => r._id === restaurantId);
-      const updatedFavorites = [...auth.favorites, { ...response.data, restaurantId: restaurant }];
+      const restaurant = Object.values(groupedRestaurants).flat().find(r => r._id === restaurantId); // Find restaurant
+      const updatedFavorites = [...auth.favorites, { ...response.data, restaurantId: restaurant }]; // Update favorites
       console.log('Adding to favorites:', updatedFavorites);
-      setFavorites(updatedFavorites);
+      setFavorites(updatedFavorites); // Set favorites
     } catch (error) {
-      console.error('Error adding to favorites:', error);
+      console.error('Error adding to favorites:', error); // Log error
       if (error.response && error.response.status === 401) {
         alert('Session expired, please log in again.');
       }
     }
   };
 
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; // Days of the week
 
   return (
     <div className="p-2 max-w-full mx-auto mt-2">
@@ -63,7 +63,7 @@ const WeeklySpecials = () => {
         {daysOfWeek.map(day => (
           <div key={day} className="border p-2 rounded bg-white shadow">
             <button
-              onClick={() => toggleDay(day)}
+              onClick={() => toggleDay(day)} // Toggle day visibility
               className="text-lg font-bold focus:outline-none flex items-center justify-between w-full"
             >
               {day}
@@ -81,7 +81,7 @@ const WeeklySpecials = () => {
                     <p className="text-xs mb-1">{restaurant.description}</p>
                     <p className="text-xs font-semibold text-green-600">{restaurant.happyhour}</p>
                     <button
-                      onClick={() => handleAddToFavorites(restaurant._id)}
+                      onClick={() => handleAddToFavorites(restaurant._id)} // Call to add to favorites
                       className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
                     >
                       Add to Favorites

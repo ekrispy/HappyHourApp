@@ -4,22 +4,26 @@ import { AuthContext } from '../../Context/Context';
 import axios from 'axios';
 
 const Body = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const { auth, setFavorites } = useContext(AuthContext);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const { auth, setFavorites } = useContext(AuthContext); // Access auth and setFavorites from context
 
+  // Handle search input change
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  // Handle removing a favorite restaurant
   const handleRemoveFromFavorites = async (favoriteId) => {
     try {
       await axios.delete(`http://localhost:4000/api/favorites/${favoriteId}`, {
-        headers: { 'x-auth-token': auth.token }
+        headers: { 'x-auth-token': auth.token } // Include token in request header
       });
+      // Update the favorites list
       const updatedFavorites = auth.favorites.filter(favorite => favorite._id !== favoriteId);
       setFavorites(updatedFavorites);
     } catch (error) {
       console.error('Error removing favorite:', error);
+      // Show alert if session is expired
       if (error.response && error.response.status === 401) {
         alert('Session expired, please log in again.');
       }
@@ -36,7 +40,7 @@ const Body = () => {
             placeholder='Search for your favorite'
             className='border-none outline-none placeholder:text-sm focus:outline-none'
             value={searchTerm}
-            onChange={handleSearchChange}
+            onChange={handleSearchChange} // Search input change handler
           />
         </div>
         <div className='flex gap-4 items-center'>
@@ -51,6 +55,7 @@ const Body = () => {
         <h2 className='text-2xl font-bold mb-4'>Your Favorites</h2>
         <div className='overflow-y-auto h-96'> {/* Scrollable container */}
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+            {/* Display favorite restaurants if available */}
             {Array.isArray(auth.favorites) && auth.favorites.length > 0 ? (
               auth.favorites.map(favorite => (
                 favorite.restaurantId && (
@@ -62,7 +67,7 @@ const Body = () => {
                     <p className="text-xs font-semibold text-green-600">{favorite.restaurantId.happyhour}</p>
                     <button
                       className="mt-2 p-2 bg-red-500 text-white rounded"
-                      onClick={() => handleRemoveFromFavorites(favorite._id)}
+                      onClick={() => handleRemoveFromFavorites(favorite._id)} // Remove favorite handler
                     >
                       Remove from Favorites
                     </button>

@@ -4,12 +4,12 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { AuthContext } from '../../Context/Context';
 
 const NavBar = ({ searchTerm, handleSearchChange }) => {
-  const { auth, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { auth, logout } = useContext(AuthContext); // Get auth and logout from context
+  const navigate = useNavigate(); // Navigation hook
 
   const handleLogout = () => {
-    logout();
-    navigate('/', { replace: true });
+    logout(); // Call logout function
+    navigate('/', { replace: true }); // Navigate to home
   };
 
   return (
@@ -22,7 +22,7 @@ const NavBar = ({ searchTerm, handleSearchChange }) => {
           type="text"
           placeholder="Search for happy hours"
           value={searchTerm}
-          onChange={handleSearchChange}
+          onChange={handleSearchChange} // Call when search term changes
           className="p-2 border rounded"
         />
         <AiOutlineSearch className="text-[20px] cursor-pointer ml-2" />

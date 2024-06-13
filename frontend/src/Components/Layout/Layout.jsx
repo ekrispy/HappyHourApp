@@ -1,13 +1,13 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import NavBar from '../NavBar/NavBar'; // Import the NavBar component
+import { Outlet } from 'react-router-dom'; 
+import NavBar from '../NavBar/NavBar'; 
 
 const Layout = ({ searchTerm, handleSearchChange }) => {
   return (
     <div>
-      <NavBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+      <NavBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} /> {/* Render NavBar */}
       <div className="mt-16"> {/* Add margin to avoid overlap with fixed NavBar */}
-        <Outlet />
+        <Outlet /> {/* Render child routes */}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { AuthContext } from '../../Context/Context';
 
 const SideMenu = () => {
-  const { auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext); // Get auth from context
 
   return (
     <div className="bg-sideMenuBg relative h-full basis-[20%] p-4">
@@ -43,7 +43,6 @@ const SideMenu = () => {
           <span className="text-white">Favorites</span>
         </Link>
       </div>
-      
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react';
-import Carousel from '../Carousel/Carousel.jsx'; // Import the Carousel component
-import Cattivella from "../../assets/Catt2.jpg";
+import Carousel from '../Carousel/Carousel.jsx'; 
+import Cattivella from "../../assets/Catt2.jpg"; 
 import Ang from "../../assets/ang3.jpg";
-import Kona from "../../assets/kona.jpg";
+import Kona from "../../assets/kona.jpg"; 
 
 const Home = () => {
+  // Happy hour images data
   const happyHourImages = [
     {
       id: 1,
@@ -29,9 +30,10 @@ const Home = () => {
 
   return (
     <div className="h-screen p-4">
-            <p className="text-xl mb-10 mt-10 flex gap-2 items-center justify-center text-center">Featured Happy Hour Deals</p>
+      <p className="text-xl mb-10 mt-10 flex gap-2 items-center justify-center text-center">Featured Happy Hour Deals</p>
       <Carousel images={happyHourImages} /> {/* Use the Carousel component */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        {/* Card components */}
         <Card 
           title="Weekly Happy Hour Deals" 
           description="Check out the best deals of the week!" 
@@ -57,6 +59,7 @@ const Home = () => {
   );
 };
 
+// Card component
 const Card = ({ title, description, link }) => {
   return (
     <div className="border rounded shadow p-4 bg-white">

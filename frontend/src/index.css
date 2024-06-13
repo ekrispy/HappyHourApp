@@ -10,19 +10,13 @@
 
 /* default css stylings */
 
-li{
-  opacity: .3;
-  cursor: pointer;
-}
+
 
 body{
   background: #f2f2f2;
 }
 
-.singleRestaurant:hover img{
-  transform: scale(1.1);
-  transition: all 0.8s ease-in-out;
-}
+
 
 ::-webkit-scrollbar {
   display: none;

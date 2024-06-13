@@ -3,19 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Context';
 
 const SignUp = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-  const { register } = useContext(AuthContext);
+  const [username, setUsername] = useState(''); // State for username
+  const [email, setEmail] = useState(''); // State for email
+  const [password, setPassword] = useState(''); // State for password
+  const navigate = useNavigate(); // Navigation hook
+  const { register } = useContext(AuthContext); // Get register function from context
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent form default behavior
     try {
-      await register(username, email, password);
-      navigate('/login', { replace: true });
+      await register(username, email, password); // Call register function
+      navigate('/login', { replace: true }); // Navigate to login
     } catch (error) {
-      console.error(error);
+      console.error(error); // Log error
     }
   };
 
